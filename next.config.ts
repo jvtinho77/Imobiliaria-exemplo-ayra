@@ -33,7 +33,6 @@ const nextConfig: NextConfig = {
   },
   // Image optimization
   images: {
-    domains: ['localhost'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -41,6 +40,10 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/storage/v1/object/public/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**.freepik.com',
+      }
     ],
     formats: ['image/webp', 'image/avif'],
   },
