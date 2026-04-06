@@ -1,0 +1,322 @@
+.navbar {
+  position: fixed;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 700px; /* Bem mais compacto */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  z-index: 1000;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              background 0.4s ease, 
+              box-shadow 0.4s ease, 
+              opacity 0.4s ease;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.scrolled {
+  background: rgba(13, 10, 9, 0.85); /* Dark background */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.initialHide {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(-200%) !important;
+  pointer-events: none;
+}
+
+.hidden:not(.initialHide) {
+  transform: translateX(-50%) translateY(-150%);
+  opacity: 0;
+}
+
+/* Borda brilhante */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 100px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(0, 136, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.navbar:hover::before {
+  opacity: 1;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  padding-right: 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:global(.light) .logo {
+  border-right-color: rgba(0, 0, 0, 0.1);
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logoSvg {
+  height: 22px;
+  width: auto;
+  color: #fff; /* Puramente branco no modo escuro */
+  margin-bottom: -4px;
+}
+
+:global(.light) .logoSvg {
+  color: #0f172a; /* Puramente escuro no modo claro */
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #fff; /* Branco no escuro */
+  text-transform: uppercase;
+  font-family: var(--font-outfit), sans-serif;
+}
+
+:global(.light) .brand {
+  color: #0f172a; /* Escuro no claro */
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem; /* Menos espaçamento entre links */
+}
+
+.navLinks a {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--clr-accent);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px var(--clr-accent-glow);
+}
+
+.navLinks a:hover {
+  color: #ffffff;
+}
+
+.navLinks a:hover::after {
+  width: 100%;
+}
+
+/* Nav Actions (Theme Toggle + CTA) */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Botão CTA estilo 21st.dev */
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1rem; /* Botão mais baixo e estreito */
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, var(--clr-accent) 0%, #0066cc 100%);
+  color: #fff;
+  border: none;
+  box-shadow:
+    0 4px 15px rgba(0, 136, 255, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaBtn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ctaBtn:hover::before {
+  opacity: 1;
+}
+
+.ctaBtn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 8px 25px rgba(0, 136, 255, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+
+  .navbar {
+    width: 90%;
+    padding: 0.4rem 0.8rem;
+    top: 0.5rem; /* Navbar mais encostada no topo */
+  }
+
+  .logo {
+    font-size: 0.95rem;
+  }
+
+  .logoIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .ctaBtn {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* iPhone SE/8/mini specific */
+@media (max-width: 375px) {
+  .navbar {
+    width: 90%;
+    padding: 0.5rem 0.875rem;
+    top: 0.5rem;
+  }
+
+  .logo {
+    font-size: 0.9rem;
+  }
+
+  .logoIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ctaBtn {
+    padding: 0.45rem 0.875rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* iPhone 12/13/14 Pro specific (390px-428px) */
+@media (min-width: 376px) and (max-width: 428px) {
+  .navbar {
+    width: 91%;
+    padding: 0.6rem 0.95rem;
+  }
+
+  .logo {
+    font-size: 0.92rem;
+  }
+
+  .ctaBtn {
+    padding: 0.525rem 0.95rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* --- LIGHT THEME OVERRIDES --- */
+:global(.light) .navbar {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.45) 0%, /* Mais transparente */
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Borda mais discreta */
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+:global(.light) .scrolled {
+  background: rgba(255, 255, 255, 0.8); /* Levemente mais translúcido ao scrollar */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+:global(.light) .logo {
+  color: #0f172a;
+}
+
+:global(.light) .navLinks a {
+  color: #475569;
+  font-weight: 600;
+}
+
+:global(.light) .navLinks a:hover {
+  color: #0088ff;
+}

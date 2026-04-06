@@ -1,0 +1,943 @@
+.section {
+  padding: 4rem 2%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header estilo 21st.dev */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.header h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 30px rgba(0, 136, 255, 0.15);
+}
+
+.header p {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Marquee Independent Rows Wrapper */
+.rowsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.rowLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.rowLabel::before,
+.rowLabel::after {
+  content: '';
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 136, 255, 0.4), transparent);
+  width: 80px;
+}
+
+/* Static Row - 3 cards fixos */
+.staticRow {
+  width: 100%;
+  overflow: visible;
+  padding-bottom: 0.5rem;
+}
+
+.staticRow::-webkit-scrollbar {
+  display: none;
+}
+
+.staticRow:active {
+  cursor: grabbing;
+}
+
+/* Carousel Row - alternância de imóveis com scroll manual */
+.carouselRow {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 5% 3rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+.carouselRow::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselRow .rowTrack {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  transition: transform 0.3s ease;
+}
+
+.carouselRow .card {
+  width: calc(22.5vw - 1rem); /* Aproximadamente 4 por tela no desktop */
+  max-width: 320px;
+  min-width: 280px;
+  flex-shrink: 0;
+}
+
+/* Animações de fade */
+.fadeOut {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cards menores na fileira de baixo - 4 cards */
+.carouselRow .card {
+  width: 275px;
+  flex-shrink: 0;
+}
+
+.carouselRow .imageWrapper {
+  height: 155px;
+}
+
+.carouselRow .info {
+  padding: 0.7rem 0.9rem 0.9rem;
+}
+
+.carouselRow .title {
+  font-size: 0.95rem;
+}
+
+.carouselRow .location {
+  font-size: 0.72rem;
+  margin-bottom: 0.45rem;
+}
+
+.carouselRow .details {
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.carouselRow .details span {
+  font-size: 0.68rem;
+  padding: 0.18rem 0.45rem;
+}
+
+.carouselRow .price {
+  font-size: 0.9rem;
+}
+
+.carouselRow .detailsBtn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.72rem;
+}
+
+.scrollingRow::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollingRow:active {
+  cursor: grabbing;
+}
+
+.rowTrack {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+  width: max-content;
+  margin: 0 auto; /* Centraliza */
+}
+
+.marqueeScrollbar {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: auto; /* Required for smooth JS scrolling */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+  padding-bottom: 1rem;
+}
+
+.marqueeScrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Webkit */
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 2rem;
+  padding: 0 2rem;
+  width: max-content;
+}
+
+/* Card estilo 21st.dev - glassmorphism premium */
+.card {
+  width: 320px; /* Tamanho fixo, não estica */
+  background: rgba(255, 255, 255, 0.03); /* Quase sem opacidade */
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  cursor: pointer;
+  backdrop-filter: blur(40px) saturate(180%); /* Embaçado monstro */
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* Borda brilhante no hover */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-md);
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(0, 136, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Glow effect */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 136, 255, 0.1) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(0, 136, 255, 0.3);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(0, 136, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Image */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+/* Badges estilo 21st.dev */
+.badges {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  gap: 0.4rem;
+  z-index: 5;
+}
+
+.badge {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.25rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badgeAccent {
+  background: linear-gradient(135deg, var(--clr-accent) 0%, #0066cc 100%);
+  color: #fff;
+  border: none;
+  box-shadow:
+    0 4px 15px rgba(0, 136, 255, 0.4),
+    0 0 20px rgba(0, 136, 255, 0.2);
+}
+
+/* Info */
+.info {
+  padding: 0.75rem 1rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.location {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  margin-bottom: 0.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.location::before {
+  content: '📍';
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+}
+
+.details span {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.details span::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+  box-shadow: 0 0 8px var(--clr-accent);
+  flex-shrink: 0;
+}
+
+.badgesRow {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.simpleBadge, .simpleBadgeAccent {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+}
+
+.simpleBadge {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.simpleBadgeAccent {
+  background: rgba(0, 136, 255, 0.1);
+  color: var(--clr-accent);
+  border: 1px solid rgba(0, 136, 255, 0.2);
+}
+
+.cardSpecs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.specItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.specItem svg {
+  opacity: 0.7;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+@media (max-width: 640px) {
+  .section { padding: 2rem 0; }
+  .header { padding: 0 3%; margin-bottom: 1rem; }
+
+  .header h2 {
+    font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+  }
+
+  .header p {
+    font-size: 0.8rem;
+  }
+
+  .rowTrack {
+    gap: 0.5rem;
+    width: max-content;
+    padding: 0 3%;
+  }
+
+  /* Cards menores e 2 por fileira no mobile */
+  .card {
+    width: 45vw; /* Reduzido levemente para um respiro mais elegante */
+    max-width: 220px;
+    min-width: 140px;
+  }
+
+  .info {
+    padding: 0.5rem 0.6rem; /* Menos padding interno */
+  }
+
+  .badgesRow {
+    gap: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .simpleBadge, .simpleBadgeAccent {
+    font-size: 0.55rem;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .title {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .cardSpecs {
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .specItem {
+    font-size: 0.75rem;
+    gap: 0.25rem;
+  }
+
+  .price {
+    font-size: 0.95rem;
+  }
+
+  .rowTrack, .staticRow .rowTrack {
+    gap: 0.85rem; /* Um pouco mais de respiro entre os cards */
+    justify-content: center;
+    padding: 0 1.5%;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .staticRow {
+    padding: 0.5rem 0 1.5rem; /* Menos padding vertical */
+  }
+
+  .skeletonCard {
+    width: 46vw;
+    max-width: 220px;
+    height: 180px;
+  }
+
+  .imageWrapper {
+    height: 110px;
+  }
+
+  .info {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .title {
+    font-size: 0.85rem;
+  }
+
+  .location {
+    font-size: 0.7rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .details {
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.4rem;
+    gap: 0.3rem;
+  }
+
+  .details span {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .footer {
+    gap: 0.4rem;
+  }
+
+  .price {
+    font-size: 0.85rem;
+  }
+
+  .detailsBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+
+
+  .rowLabel {
+    font-size: 0.65rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Fileira de baixo - mesma config */
+  .carouselRow .card {
+    width: 45vw;
+    max-width: 200px;
+    min-width: 150px;
+  }
+
+  .carouselRow .imageWrapper {
+    height: 110px;
+  }
+
+  .carouselRow .info {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .carouselRow .title {
+    font-size: 0.85rem;
+  }
+
+  .carouselRow .location {
+    font-size: 0.7rem;
+  }
+
+  .carouselRow .details span {
+    font-size: 0.65rem;
+  }
+
+  .carouselRow .price {
+    font-size: 0.85rem;
+  }
+
+  .carouselRow .detailsBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* iPhone SE/8/mini specific (375px) */
+@media (max-width: 375px) {
+  .section { padding: 1.75rem 0; }
+  .header { padding: 0 2.5%; margin-bottom: 0.875rem; }
+
+  .card {
+    width: 46vw;
+    max-width: 175px;
+    min-width: 140px;
+  }
+
+  .skeletonCard {
+    width: 46vw;
+    max-width: 175px;
+    height: 190px;
+  }
+
+  .imageWrapper {
+    height: 100px;
+  }
+
+  .info {
+    padding: 0.45rem 0.5rem;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .location {
+    font-size: 0.65rem;
+  }
+
+  .details span {
+    font-size: 0.6rem;
+  }
+
+  .price {
+    font-size: 0.8rem;
+  }
+
+  .detailsBtn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .carouselRow .card {
+    width: 46vw;
+    max-width: 175px;
+    min-width: 140px;
+  }
+
+  .carouselRow .imageWrapper {
+    height: 100px;
+  }
+}
+
+/* iPhone 12/13/14 Pro specific (390px-428px) */
+@media (min-width: 376px) and (max-width: 428px) {
+  .card {
+    width: 44vw;
+    max-width: 190px;
+  }
+
+  .skeletonCard {
+    width: 44vw;
+    max-width: 190px;
+  }
+
+  .imageWrapper {
+    height: 105px;
+  }
+
+  .carouselRow .card {
+    width: 44vw;
+    max-width: 190px;
+  }
+
+  .carouselRow .imageWrapper {
+    height: 105px;
+  }
+}
+
+/* Skeleton Loading */
+.skeletonCard {
+  width: 320px;
+  flex-shrink: 0;
+  height: 280px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.08) 37%,
+    rgba(255, 255, 255, 0.05) 63%
+  );
+  background-size: 400% 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  animation: skeletonShimmer 1.4s ease infinite;
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* --- LIGHT THEME OVERRIDES --- */
+:global(html.light) .section {
+  background: #f8f9fa !important;
+}
+
+:global(html.light) .header h2 {
+  color: #1a1a2e;
+  text-shadow: none;
+}
+
+:global(html.light) .header p {
+  color: #5a5a6e;
+}
+
+:global(html.light) .card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 250, 250, 0.9) 100%) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+:global(html.light) .card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 136, 255, 0.2) 0%,
+    rgba(0, 136, 255, 0.05) 50%,
+    rgba(0, 136, 255, 0.2) 100%
+  );
+}
+
+:global(html.light) .card:hover {
+  border-color: rgba(0, 136, 255, 0.4);
+  box-shadow:
+    0 25px 60px rgba(0, 50, 150, 0.12),
+    0 0 40px rgba(0, 136, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-8px) scale(1.02);
+}
+
+:global(html.light) .badge {
+  background: rgba(248, 250, 252, 0.9);
+  color: #334155;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  font-weight: 700;
+}
+
+:global(html.light) .simpleBadge {
+  background: rgba(0, 0, 0, 0.05);
+  color: #475569;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+:global(html.light) .simpleBadgeAccent {
+  background: rgba(0, 136, 255, 0.15);
+  color: #0088ff;
+  border-color: rgba(0, 136, 255, 0.3);
+}
+
+:global(html.light) .title {
+  color: #1a1a2e;
+}
+
+:global(html.light) .cardSpecs {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+:global(html.light) .specItem {
+  color: #475569;
+}
+
+:global(html.light) .specItem svg {
+  color: #0088ff;
+}
+
+:global(html.light) .price {
+  color: #1a1a2e;
+  text-shadow: none;
+}
+
+:global(html.light) .rowLabel {
+  color: #1a1a2e;
+}
+
+:global(html.light) .info {
+  background: transparent;
+}
+
+/* Location text */
+.location {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  margin-bottom: 0.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.location::before {
+  content: '📍';
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+:global(html.light) .location {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Tabela de Imóveis */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table thead {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tableImg {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge {
+  background: rgba(0, 136, 255, 0.15);
+  color: var(--clr-accent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.priceCell {
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.viewBtn {
+  background: var(--clr-accent);
+  color: #fff;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.viewBtn:hover {
+  background: #0077cc;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .tableImg {
+    width: 45px;
+    height: 30px;
+  }
+}

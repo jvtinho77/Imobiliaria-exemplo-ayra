@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora - Imóveis de Luxo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="ambient-light main-glow"></div>
+    <div class="ambient-light secondary-glow"></div>
+
+    <nav class="navbar animate-on-load">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span>Sua Logo Aqui</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#imoveis">Imóveis</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+            </ul>
+            <a href="#contato" class="btn btn-primary">Fale Conosco</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="inicio">
+        <div class="hero-bg animate-on-load">
+            <video class="hero-video" autoplay muted playsinline preload="auto">
+                <source src="assets/freepik_seguinte-quero-que-a-camera-venha-de-longe-igual-um-drone-e-mostre-a-casa-quando-trava-na-cena-da-casa-fica-em-camera-lenta.-resumindo-comeca-com-a-camera-acelerada-se-aproximando-e-fica-_0001.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content video-content">
+            <h1 class="fade-up">O seu novo padrão de vida</h1>
+            <p class="fade-up">Descubra residências exclusivas e lares deslumbrantes projetados para elevar a sua experiência de bem-estar e conforto.</p>
+
+            <div class="search-bar fade-up">
+                <div class="search-field">
+                    <label>Localização</label>
+                    <input type="text" placeholder="Qual a sua preferência?">
+                </div>
+                <div class="search-field">
+                    <label>Tipo de Imóvel</label>
+                    <select>
+                        <option>Qualquer tipo</option>
+                        <option>Casa</option>
+                        <option>Apartamento</option>
+                        <option>Cobertura</option>
+                    </select>
+                </div>
+                <button class="btn btn-search">Buscar</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="featured-properties" id="imoveis">
+        <div class="section-header reveal-up">
+            <h2>Imóveis em Destaque</h2>
+            <p>Conheça as nossas opções mais exclusivas e refinadas disponíveis no mercado.</p>
+        </div>
+
+        <div class="property-grid">
+            <!-- Property 1 -->
+            <div class="property-card reveal-up">
+                <div class="property-image-wrapper">
+                    <img src="assets/modern.png" alt="Apartamento Moderno">
+                    <div class="property-badges">
+                        <span class="badge">Venda</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Cobertura Horizon</h3>
+                    <p class="property-location">Vila Nova Conceição, SP</p>
+                    <div class="property-details">
+                        <span>4 Quartos</span>
+                        <span>5 Banheiros</span>
+                        <span>350 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 8.500.000</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 2 -->
+            <div class="property-card reveal-up" style="transition-delay: 200ms;">
+                <div class="property-image-wrapper">
+                    <img src="assets/villa.png" alt="Villa Minimalista">
+                    <div class="property-badges">
+                        <span class="badge">Venda</span>
+                        <span class="badge badge-accent">Exclusivo</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Villa Serena Lux</h3>
+                    <p class="property-location">Jardim Europa, SP</p>
+                    <div class="property-details">
+                        <span>5 Quartos</span>
+                        <span>7 Banheiros</span>
+                        <span>820 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 15.200.000</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 3 -->
+            <div class="property-card reveal-up" style="transition-delay: 400ms;">
+                <div class="property-image-wrapper">
+                    <img src="assets/modern.png" alt="Penthouse Moderno">
+                    <div class="property-badges">
+                        <span class="badge">Aluguel</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Sky Residence</h3>
+                    <p class="property-location">Itaim Bibi, SP</p>
+                    <div class="property-details">
+                        <span>3 Quartos</span>
+                        <span>4 Banheiros</span>
+                        <span>280 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 18.000/mês</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 4 -->
+            <div class="property-card reveal-up" style="transition-delay: 200ms;">
+                <div class="property-image-wrapper">
+                    <img src="assets/mansion.png" alt="Mansão de Luxo">
+                    <div class="property-badges">
+                        <span class="badge">Venda</span>
+                        <span class="badge badge-accent">Premium</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Mansão Bellagio</h3>
+                    <p class="property-location">Alphaville, SP</p>
+                    <div class="property-details">
+                        <span>7 Quartos</span>
+                        <span>9 Banheiros</span>
+                        <span>1.200 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 35.000.000</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 5 -->
+            <div class="property-card reveal-up" style="transition-delay: 400ms;">
+                <div class="property-image-wrapper">
+                    <img src="assets/terrain.png" alt="Terreno Exclusivo">
+                    <div class="property-badges">
+                        <span class="badge">Loteamento</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Lote Fazenda Boa Vista</h3>
+                    <p class="property-location">Porto Feliz, SP</p>
+                    <div class="property-details">
+                        <span>Projeto Aprovado</span>
+                        <span>Beira Lago</span>
+                        <span>3.500 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 6.200.000</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 6 -->
+            <div class="property-card reveal-up" style="transition-delay: 600ms;">
+                <div class="property-image-wrapper">
+                    <img src="assets/hero.png" alt="Casa de Praia">
+                    <div class="property-badges">
+                        <span class="badge">Venda</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Residência Oceana</h3>
+                    <p class="property-location">Riviera de S. Lourenço, SP</p>
+                    <div class="property-details">
+                        <span>6 Quartos</span>
+                        <span>6 Banheiros</span>
+                        <span>950 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 22.500.000</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 7 -->
+            <div class="property-card reveal-up" style="transition-delay: 800ms;">
+                <div class="property-image-wrapper">
+                    <img src="assets/br_beach.png" alt="Casa em Trancoso">
+                    <div class="property-badges">
+                        <span class="badge">Venda</span>
+                        <span class="badge badge-accent">Lançamento</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Tropikana Beach</h3>
+                    <p class="property-location">Trancoso, Bahia</p>
+                    <div class="property-details">
+                        <span>4 Quartos</span>
+                        <span>5 Banheiros</span>
+                        <span>400 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 12.000.000</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 8 -->
+            <div class="property-card reveal-up" style="transition-delay: 1000ms;">
+                <div class="property-image-wrapper">
+                    <img src="assets/villa.png" alt="Fazenda Histórica">
+                    <div class="property-badges">
+                        <span class="badge">Venda</span>
+                    </div>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Fazenda Imperial</h3>
+                    <p class="property-location">Petrópolis, Rio de Janeiro</p>
+                    <div class="property-details">
+                        <span>8 Quartos</span>
+                        <span>10 Banheiros</span>
+                        <span>5.000 m²</span>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 28.500.000</span>
+                        <a href="#" class="btn btn-outline">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner reveal-up">
+        <div class="banner-content">
+            <h2>Pronto para encontrar seu lar dos sonhos?</h2>
+            <p>Nossos corretores estão à disposição para um atendimento personalizado.</p>
+            <a href="#contato" class="btn btn-primary btn-large">Agendar Consultoria</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span>Sua Logo Aqui</span>
+                </div>
+                <p>A mais alta curadoria de imóveis do Brasil.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Imóveis</a></li>
+                    <li><a href="#">Desenvolvedores</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Imobiliária Exemplo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

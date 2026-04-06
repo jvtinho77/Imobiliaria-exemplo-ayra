@@ -1,0 +1,505 @@
+/* Section com video scroll - Estilo Hero */
+.section {
+  position: relative;
+  min-height: 150vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2%;
+  background: var(--clr-bg);
+  overflow: hidden;
+}
+
+/* Video Background */
+.videoBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, var(--clr-bg-surface) 0%, var(--clr-bg) 100%);
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 10, 9, 0.4) 0%,
+    rgba(13, 10, 9, 0.2) 30%,
+    rgba(13, 10, 9, 0.2) 70%,
+    rgba(13, 10, 9, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+/* Content - Glassmorphism Hero Style */
+.content {
+  position: relative;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 2;
+  padding: 3rem 4rem;
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(20, 20, 25, 0.6);
+  backdrop-filter: blur(60px) saturate(180%);
+  -webkit-backdrop-filter: blur(60px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* Grain texture overlay */
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: overlay;
+}
+
+.content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter2'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter2)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: soft-light;
+  animation: grainMove 10s steps(8) infinite;
+}
+
+@keyframes grainMove {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-1%, 1%); }
+  50% { transform: translate(1%, -1%); }
+  75% { transform: translate(-1%, -1%); }
+}
+
+.content.show {
+  opacity: 1;
+}
+
+/* Title */
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.8),
+    0 4px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle strong {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 136, 255, 0.5), 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Feature Cards Grid */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.featureCard {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  min-width: 140px;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(0, 136, 255, 0.3);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(0, 136, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.featureCard h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.featureCard p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* CTA Button - Estilo 21st.dev */
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, var(--clr-accent) 0%, #0066cc 100%);
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  box-shadow:
+    0 10px 30px rgba(0, 136, 255, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ctaBtn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ctaBtn:hover::before {
+  opacity: 1;
+}
+
+.ctaBtn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 20px 50px rgba(0, 136, 255, 0.6),
+    0 0 40px rgba(0, 136, 255, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Fade up animations */
+.fadeUp {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content.show .fadeUp {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content.show .title.fadeUp {
+  transition-delay: 0s;
+}
+
+.content.show .subtitle.fadeUp {
+  transition-delay: 0.15s;
+}
+
+.content.show .cards.fadeUp {
+  transition-delay: 0.3s;
+}
+
+.content.show .ctaBtn.fadeUp {
+  transition-delay: 0.45s;
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  position: relative;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  z-index: 3;
+}
+
+.arrow {
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  position: relative;
+}
+
+.arrow::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: var(--clr-accent);
+  border-radius: 2px;
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) translateY(12px);
+    opacity: 0.5;
+  }
+}
+
+/* --- LIGHT THEME OVERRIDES --- */
+:global(.light) .videoOverlay {
+  background: linear-gradient(
+    180deg,
+    var(--clr-bg) 0%,
+    rgba(255, 255, 255, 0.2) 15%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.3) 70%,
+    var(--clr-bg) 100%
+  );
+}
+
+:global(.light) .content {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+}
+
+:global(.light) .title {
+  color: #111118;
+  text-shadow: none;
+}
+
+:global(.light) .subtitle {
+  color: #444455;
+  text-shadow: none;
+}
+
+:global(.light) .subtitle strong {
+  color: #0055ff;
+  text-shadow: none;
+}
+
+:global(.light) .featureCard {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+:global(.light) .featureCard h3 {
+  color: #111118;
+}
+
+:global(.light) .featureCard p {
+  color: #666677;
+}
+
+:global(.light) .scrollIndicator {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+:global(.light) .arrow {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile adjustments - iPhone optimization */
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 3rem 1rem;
+    min-height: 100vh;
+  }
+
+  .content {
+    padding: 2rem 1.25rem;
+    margin: 0 3%;
+    width: 94%;
+    border-radius: 24px;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featureCard {
+    width: calc(50% - 0.4rem);
+    min-width: auto;
+    max-width: none;
+    padding: 1rem 0.5rem;
+  }
+
+  .featureCard:last-child {
+    width: 100%;
+    max-width: calc(50% - 0.4rem);
+  }
+
+  .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .featureCard h3 {
+    font-size: 1.25rem;
+  }
+
+  .featureCard p {
+    font-size: 0.75rem;
+  }
+
+  .ctaBtn {
+    padding: 0.875rem 2rem;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .scrollIndicator {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  .arrow {
+    width: 20px;
+    height: 32px;
+  }
+
+  .arrow::before {
+    width: 3px;
+    height: 6px;
+  }
+}
+
+/* iPhone SE/8/mini specific */
+@media (max-width: 375px) {
+  .section {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .content {
+    padding: 1.5rem 1rem;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .featureCard {
+    padding: 0.875rem 0.4rem;
+  }
+
+  .featureCard h3 {
+    font-size: 1.1rem;
+  }
+
+  .featureCard p {
+    font-size: 0.7rem;
+  }
+}
+
+/* iPhone 12/13/14 Pro Max */
+@media (min-width: 428px) and (max-width: 768px) {
+  .cards {
+    gap: 1rem;
+  }
+
+  .featureCard {
+    width: calc(33.333% - 0.7rem);
+    padding: 1.25rem 0.75rem;
+  }
+
+  .featureCard:last-child {
+    width: calc(33.333% - 0.7rem);
+    max-width: none;
+  }
+}
