@@ -5,6 +5,7 @@ import Hero from '@/components/Hero/Hero';
 import PropertyGrid from '@/components/PropertyGrid/PropertyGrid';
 import Banner from '@/components/Banner/Banner';
 import Footer from '@/components/Footer/Footer';
+import PropertyDetails from '@/components/PropertyDetails/PropertyDetails';
 
 function Home() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/imoveis/:id" element={<div>Detalhes do Imóvel (em desenvolvimento)</div>} />
+        <Route path="/imoveis/:id" element={<PropertyDetails />} />
       </Routes>
       <Footer />
     </ThemeProvider>
