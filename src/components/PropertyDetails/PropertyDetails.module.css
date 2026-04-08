@@ -241,3 +241,25 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+.similarSection {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:global(.light) .similarSection {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.similarTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--clr-text);
+}
+
+.similarGrid {
+  /* O StaticRow do PropertyGrid já resolve a exibição dos cards com scroll */
+  margin-top: 1rem;
+}

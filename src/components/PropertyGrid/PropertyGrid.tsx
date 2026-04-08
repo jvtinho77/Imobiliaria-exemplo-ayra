@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase';
 import styles from './PropertyGrid.module.css';
 
 // Interface com nomes de campos em português (como estão na tabela Supabase)
-interface Property {
+export interface Property {
   id: string;
   titulo: string;
   localizacao: string;
@@ -27,7 +27,7 @@ function getImageUrl(imagem_url: string | null): string {
 }
 
 // Componente de Card individual
-function PropertyCard({ property }: { property: Property }) {
+export function PropertyCard({ property }: { property: Property }) {
   return (
     <div className={styles.card}>
       <Link to={`/imoveis/${property.id}`} className={styles.cardLink}>
@@ -74,7 +74,7 @@ function PropertyCard({ property }: { property: Property }) {
 }
 
 // Fileira fixa superior (2 imóveis no mobile, 3 no desktop)
-function StaticRow({ properties }: { properties: Property[] }) {
+export function StaticRow({ properties }: { properties: Property[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);

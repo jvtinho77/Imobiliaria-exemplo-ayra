@@ -2,41 +2,42 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
 import styles from './PropertyDetails.module.css';
-
-interface Property {
-  id: string;
-  titulo: string;
-  localizacao: string;
-  imagem_url: string | null;
-  tipo_negocio: string;
-  tags: string[] | null;
-  quartos: number | null;
-  banheiros: number | null;
-  area_m2: number | null;
-  preco_formatado: string;
-  detalhe_extra: string | null;
-}
+import { Property, StaticRow } from '@/components/PropertyGrid/PropertyGrid';
 
 export default function PropertyDetails() {
   const { id } = useParams<{ id: string }>();
   const [property, setProperty] = useState<Property | null>(null);
+  const [similarProperties, setSimilarProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Rola para o topo sempre que entrar na página
     window.scrollTo(0, 0);
 
-    async function fetchProperty() {
+    async function fetchData() {
       if (!id) return;
       try {
-        const { data, error } = await supabase
+        // Busca o imóvel atual
+        const { data: currentProperty, error } = await supabase
           .from('imoveis')
           .select('*')
           .eq('id', id)
           .single();
 
         if (error) throw error;
-        setProperty(data);
+        setProperty(currentProperty);
+
+        // Busca imóveis semelhantes (outros imóveis, limite de 4)
+        const { data: similarData, error: similarError } = await supabase
+          .from('imoveis')
+          .select('*')
+          .neq('id', id)
+          .limit(4);
+
+        if (!similarError && similarData) {
+          setSimilarProperties(similarData);
+        }
+
       } catch (error) {
         console.error('Erro ao buscar imóvel:', error);
       } finally {
@@ -44,7 +45,7 @@ export default function PropertyDetails() {
       }
     }
 
-    fetchProperty();
+    fetchData();
   }, [id]);
 
   if (loading) {
@@ -137,6 +138,15 @@ export default function PropertyDetails() {
           </div>
         </div>
       </div>
+
+      {similarProperties.length > 0 && (
+        <div className={styles.similarSection}>
+          <h2 className={styles.similarTitle}>Imóveis Semelhantes</h2>
+          <div className={styles.similarGrid}>
+            <StaticRow properties={similarProperties} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
